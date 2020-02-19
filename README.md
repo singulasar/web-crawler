@@ -1,42 +1,28 @@
-# Server
+# Running the project
 
-## Project setup
-
-```
-run "npm install" (from root folder)
-```
-
-### Run for testing
+## SETUP
 
 ```
-run "node .\server\index.js" (from root folder)
+From the root of the project run the following commands in order:
+npm install
+cd .\client\
+npm install
+npm run build
+cd ..
+node .\server\index.js
 ```
 
-### Use of the API
+## Use of API
 
 ```
-The API can be reached through localhost:4000/fetch-product-data?url=[link to shop]
+The API can be accessed through localhost:4000/fetch-product-data?url=[link to shop]
 It will return a json object
 ```
 
-# client
-
-## Project setup
+## Use of client
 
 ```
-run "npm install" (from client folder)
-```
-
-### Run for testing
-
-```
-npm run serve
-```
-
-### Use of the client
-
-```
-Browse to localhost:8080
+Browse to localhost:4000
 Fill in the shop url in the input field
 Submit the data
 ```

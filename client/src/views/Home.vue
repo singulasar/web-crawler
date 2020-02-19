@@ -5,7 +5,8 @@
       <a href="#" v-on:click="submit">Fetch data</a>
     </div>
     <div class="home-content">
-      <DataDisplay v-bind:data="message" />
+      <p v-if="loading">Loading..</p>
+      <DataDisplay v-if="!loading" v-bind:data="message" />
     </div>
   </div>
 </template>
@@ -55,7 +56,7 @@ a {
 // @ is an alias to /src
 import DataDisplay from '@/components/DataDisplay.vue';
 
-const API_URL = 'http://localhost:4000/fetch-product-data?url=';
+const API_URL = '/fetch-product-data?url=';
 
 export default {
   name: 'Home',
@@ -70,6 +71,7 @@ export default {
         imageUrl: '',
       },
       url: '',
+      loading: false,
     };
   },
 
@@ -79,10 +81,13 @@ export default {
 
   methods: {
     submit() {
+      this.loading = true;
+
       fetch(API_URL + this.url)
         .then((response) => response.json())
         .then((result) => {
           this.message = result;
+          this.loading = false;
         });
     },
   },
