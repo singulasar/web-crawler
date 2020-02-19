@@ -8,6 +8,11 @@ const coolblue = {
     const selector = '.sales-price__current'
     await page.waitForSelector(selector);
     let price = await page.$eval(selector, el => el.innerText);
+    /*
+      Swapping "." and "," to conform with number standard
+      12,5 should become 12.5 to not lose the decimals when converting to a Number
+      Then all symbols except for numbers and "." are removed before converting to number
+    */
     price = Number(price.replace(/[.,]/g, function ($1) { return $1 === '.' ? ',' : '.' }).replace(/[^0-9.]+/g, ""));
     return price;
   },

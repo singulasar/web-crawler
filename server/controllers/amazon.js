@@ -20,6 +20,7 @@ const amazon = {
     const selector = '#icp-touch-link-cop > span.icp-color-base'
     await page.waitForSelector(selector);
     let currency = await page.$eval(selector, el => el.innerText)
+    // Currency here in form of USD - DOLLAR, so I take "USD " and trim away spaces
     currency = currency.split('-')[0].trim();
     return currency;
   },

@@ -2,6 +2,9 @@ async function getProductData(page) {
   const selector = '#z-vegas-pdp-props';
   await page.waitForSelector(selector);
   const scriptContent = await page.$eval(selector, el => el.innerText);
+  /*
+    Removing some characters to make it possible to parse the contents of a script tag to a js Object
+  */
   let script = JSON.parse(scriptContent.slice(9, scriptContent.length - 3));
   return script.model.articleInfo;
 }
